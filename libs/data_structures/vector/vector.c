@@ -5,8 +5,8 @@
 vector createVector(size_t n) {
     vector v1;
     v1.data = (int *) malloc(n * sizeof(int));
-    v1.size = 0; // Инициализируем размер нулем - так как вектор пока пустой
-    v1.capacity = n; // Устанавливаем вместимость вектора равной n
+    v1.size = 0;
+    v1.capacity = n;
 
     if (v1.data == NULL) {
         fprintf(stderr, "Failed to allocate memory for the vector\n");

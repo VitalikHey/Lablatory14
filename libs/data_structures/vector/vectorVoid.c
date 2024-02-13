@@ -7,8 +7,8 @@
 vectorVoid createVectorV(size_t n, size_t baseTypeSize) {
     vectorVoid v1;
     v1.data = (int *) malloc(n * sizeof(int));
-    v1.size = 0; // Инициализируем размер нулем - так как вектор пока пустой
-    v1.capacity = n; // Устанавливаем вместимость вектора равной n
+    v1.size = 0;
+    v1.capacity = n;
     v1.baseTypeSize = baseTypeSize;
 
     if (v1.data == NULL) {
