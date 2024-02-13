@@ -1,5 +1,6 @@
 #include "libs/data_structures/vector/vector.h"
 #include "libs/data_structures/vector/test.h"
+#include "libs/data_structures/vector/vectorVoid.h"
 
 void test() {
     test_pushBack_emptyVector();
@@ -13,5 +14,13 @@ void test() {
 
 int main (){
     test();
+
+    vectorVoid vector_void1;
+
+    vector_void1.data = NULL;
+    vector_void1.size = 0;
+    vector_void1.capacity = 0;
+    vector_void1.baseTypeSize = sizeof (void);
+
     return 0;
 };
