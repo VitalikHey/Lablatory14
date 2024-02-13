@@ -1,6 +1,5 @@
-#include <stdio.h>
-#include <stdint.h>
 #include "libs/data_structures/vector/vector.h"
+#include "libs/data_structures/vector/test.h"
 
 void test() {
     test_pushBack_emptyVector();
@@ -14,15 +13,5 @@ void test() {
 
 int main (){
     test();
-
-    vector vector1 = createVector(2);
-
-    pushBack(&vector1, 1);
-    pushBack(&vector1, 2);
-
-    int a = *atVector(&vector1, 0);
-
-    printf("%d", a);
-
     return 0;
 };

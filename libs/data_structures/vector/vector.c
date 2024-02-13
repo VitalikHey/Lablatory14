@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <assert.h>
 #include "vector.h"
 
 vector createVector(size_t n) {
@@ -81,25 +80,6 @@ void pushBack(vector *v, int x) {
     v->size++;
 }
 
-void test_pushBack_emptyVector() {
-    vector vector1 = createVector(0);
-
-    pushBack(&vector1, 3);
-
-    assert(vector1.data[0] == 3);
-    assert(vector1.size == 1);
-}
-
-void test_pushBack_fullVector() {
-    vector vector1 = createVector(1);
-
-    pushBack(&vector1, 2);
-    pushBack(&vector1, 4);
-
-    assert(vector1.data[1] == 4);
-    assert(vector1.size == 2);
-}
-
 void popBack(vector *v) {
     if (v->size == 0) {
         fprintf(stderr, "Error, vector is empty!");
@@ -111,15 +91,6 @@ void popBack(vector *v) {
     if (v->size < v->capacity / 2) {
         reserve(v, v->capacity / 2);
     }
-}
-
-void test_popBack_notEmptyVector() {
-    vector v = createVector(0);
-    pushBack(&v, 10);
-    assert(v.size == 1);
-    popBack(&v);
-    assert(v.size == 0);
-    assert(v.capacity == 1);
 }
 
 int *atVector(vector *v, size_t index) {
@@ -139,52 +110,3 @@ int* front(vector *v) {
     return &(v->data[0]);
 }
 
-void test_atVector_notEmptyVector() {
-    vector vector1 = createVector(2);
-
-    pushBack(&vector1, 1);
-    pushBack(&vector1, 2);
-
-    int first_element = *atVector(&vector1, 0);
-    int second_element = *atVector(&vector1, 1);
-
-
-    assert(first_element == 1);
-    assert(second_element == 2);
-}
-
-void test_atVector_requestToLastElement() {
-    vector vector1 = createVector(2);
-
-    pushBack(&vector1, 1);
-    pushBack(&vector1, 2);
-
-    int last_element = *atVector(&vector1, 1);
-
-
-    assert(last_element == 2);
-}
-
-void test_back_oneElementInVector() {
-    vector vector1 = createVector(2);
-
-    pushBack(&vector1, 1);
-    pushBack(&vector1, 2);
-
-    int last_element = *back(&vector1);
-
-
-    assert(last_element == 2);
-}
-
-void test_front_oneElementInVector(){
-    vector vector1 = createVector(2);
-
-    pushBack(&vector1, 1);
-    pushBack(&vector1, 2);
-
-    int first_element = *back(&vector1);
-
-
-    assert(first_element == 1);
-};

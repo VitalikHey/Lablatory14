@@ -6,4 +6,6 @@ set(CMAKE_C_STANDARD 11)
 add_executable(Lablatory14
         main.c
         libs/data_structures/vector/vector.h
-        libs/data_structures/vector/vector.c)
+        libs/data_structures/vector/vector.c
+        libs/data_structures/vector/test.c
+        libs/data_structures/vector/test.h)

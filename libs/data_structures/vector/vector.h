@@ -28,10 +28,6 @@ int getVectorValue(vector *v, size_t i);
 
 void pushBack(vector *v, int x);
 
-void test_pushBack_emptyVector();
-
-void test_pushBack_fullVector();
-
 void popBack(vector *v);
 
 void test_popBack_notEmptyVector();
@@ -42,14 +38,6 @@ int* back(vector *v);
 
 int* front(vector *v);
 
-void test_atVector_notEmptyVector();
 
-void test_atVector_requestToLastElement();
-
-void test_back_oneElementInVector();
-
-void test_front_oneElementInVector();
-
-// Все тесты перенести в отдельную папку, в отдельный файл
 
 #endif //LABLATORY14_VECTOR_H
