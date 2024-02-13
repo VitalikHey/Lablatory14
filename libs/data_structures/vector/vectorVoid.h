@@ -28,17 +28,12 @@ bool isEmptyV(vectorVoid *v);
 
 bool isFullV(vectorVoid *v);
 
-int getVectorValueV(vectorVoid *v, size_t i);
+void getVectorValueV(vectorVoid *v, size_t index, void *destination);
 
-void pushBackV(vectorVoid *v, int x);
+void setVectorValueV(vectorVoid *v, size_t index, void *source);
+
+void pushBackV(vectorVoid *v, void *source);
 
 void popBackV(vectorVoid *v);
-
-int* atVectorV(vectorVoid *v, size_t index);
-
-int* backV(vectorVoid *v);
-
-int* frontV(vectorVoid *v);
-
 
 #endif //LABLATORY14_VECTORVOID_H

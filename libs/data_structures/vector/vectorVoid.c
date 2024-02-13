@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <memory.h>
 #include "vector.h"
 #include "vectorVoid.h"
 
@@ -37,18 +38,6 @@ void clearV(vectorVoid *v) {
     v->size = 0;
 }
 
-//void shrinkToFit(vector *v) {
-//    if (v->size > v->capacity) {
-//        int* new_data = (int *) realloc(v->data, v->size * sizeof (int));
-//        if (new_data == NULL) {
-//            fprintf(stderr, "bad realloc");
-//            exit(1);
-//        }
-//        v->data = new_data;
-//        v->capacity = v->size;
-//    }
-//}
-
 void shrinkToFitV(vectorVoid *v) {
     int *new_data = (int *) realloc(v->data, v->size * v->baseTypeSize);
 }
@@ -60,29 +49,36 @@ void deleteVectorV(vectorVoid *v) {
     v->capacity = 0;
 }
 
-bool isEmpty(vector *v) {
+bool isEmptyV(vectorVoid *v) {
     return (v->size == 0);
 }
 
-bool isFull(vector *v) {
+bool isFullV(vectorVoid *v) {
     return (v->size == v->capacity);
 }
 
-int getVectorValue(vector *v, size_t i) {
-    return (v->data[i]);
+void getVectorValueV(vectorVoid *v, size_t index, void *destination) {
+    char *source = (char *) v->data + index * v->baseTypeSize;
+    memcpy(destination, source, v->baseTypeSize);
 }
 
-void pushBack(vector *v, int x) {
+void setVectorValueV(vectorVoid *v, size_t index, void *source) {
+    char *destination = (char *) v->data + index * v->baseTypeSize;
+    memcpy(destination, source, v->baseTypeSize);
+}
+
+
+void pushBackV(vectorVoid *v, void *source) {
     if (v->capacity == 0) {
-        reserve(v, 1);
+        reserve((vector *) v, 1);
     } else if (v->capacity == v->size) {
-        reserve(v, v->capacity * 2);
+        reserve((vector *) v, v->capacity * 2);
     }
-    v->data[v->size] = x;
+    setVectorValueV(v, v->size, source);
     v->size++;
 }
 
-void popBack(vector *v) {
+void popBackV(vectorVoid *v) {
     if (v->size == 0) {
         fprintf(stderr, "Error, vector is empty!");
         exit(1);
@@ -91,24 +87,8 @@ void popBack(vector *v) {
     v->size--;
 
     if (v->size < v->capacity / 2) {
-        reserve(v, v->capacity / 2);
+        reserve((vector *) v, v->capacity / 2);
     }
 }
 
-int *atVector(vector *v, size_t index) {
-    if (index >= v->size) {
-        fprintf(stderr, "IndexError: a[index] is not exists");
-        exit(1);
-    } else{
-        return &(v->data[index]);
-    }
-}
-
-int* back(vector *v) {
-    return &(v->data[v->size - 1]);
-}
-
-int* front(vector *v) {
-    return &(v->data[0]);
-}
 

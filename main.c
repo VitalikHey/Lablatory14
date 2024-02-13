@@ -12,15 +12,19 @@ void test() {
     test_front_oneElementInVector();
 }
 
-int main (){
-    test();
-
-    vectorVoid vector_void1;
-
-    vector_void1.data = NULL;
-    vector_void1.size = 0;
-    vector_void1.capacity = 0;
-    vector_void1.baseTypeSize = sizeof (void);
-
+int main() {
+    size_t n;
+    scanf("%zd", &n);
+    vectorVoid v = createVectorV(0, sizeof(float));
+    for (int i = 0; i < n; i++) {
+        float x;
+        scanf("%f", &x);
+        pushBackV(&v, &x);
+    }
+    for (int i = 0; i < n; i++) {
+        float x;
+        getVectorValueV(&v, i, &x);
+        printf("%f ", x);
+    }
     return 0;
 }
