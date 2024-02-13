@@ -11,6 +11,8 @@ void test_atVector_requestToLastElement();
 
 void test_back_oneElementInVector();
 
+void test_popBack_notEmptyVector();
+
 void test_front_oneElementInVector();
 
 #endif //LABLATORY14_TEST_H

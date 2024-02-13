@@ -30,14 +30,12 @@ void pushBack(vector *v, int x);
 
 void popBack(vector *v);
 
-void test_popBack_notEmptyVector();
-
 int* atVector(vector *v, size_t index);
 
 int* back(vector *v);
 
 int* front(vector *v);
 
-
+// Все тесты перенести в отдельную папку, в отдельный файл
 
 #endif //LABLATORY14_VECTOR_H

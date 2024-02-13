@@ -23,4 +23,4 @@ int main (){
     vector_void1.baseTypeSize = sizeof (void);
 
     return 0;
-};
+}
