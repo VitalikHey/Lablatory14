@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
 #include "vector.h"
 
 vector createVector(size_t n) {
@@ -47,8 +48,8 @@ void clear(vector *v) {
 //    }
 //}
 
-void shrinkToFit (vector *v) {
-    int* new_data = (int *) realloc(v->data, v->size * sizeof (int));
+void shrinkToFit(vector *v) {
+    int *new_data = (int *) realloc(v->data, v->size * sizeof(int));
 }
 
 void deleteVector(vector *v) {
@@ -57,3 +58,68 @@ void deleteVector(vector *v) {
     v->size = 0;
     v->capacity = 0;
 }
+
+bool isEmpty(vector *v) {
+    return (v->size == 0);
+}
+
+bool isFull(vector *v) {
+    return (v->size == v->capacity);
+}
+
+int getVectorValue(vector *v, size_t i) {
+    return (v->data[i]);
+}
+
+void pushBack(vector *v, int x) {
+    if (v->capacity == 0) {
+        reserve(v, 1);
+    } else if (v->capacity == v->size) {
+        reserve(v, v->capacity * 2);
+    }
+    v->data[v->size] = x;
+    v->size++;
+}
+
+void test_pushBack_emptyVector() {
+    vector vector1 = createVector(0);
+
+    pushBack(&vector1, 3);
+
+    assert(vector1.data[0] == 3);
+    assert(vector1.size == 1);
+}
+
+void test_pushBack_fullVector() {
+    vector vector1 = createVector(1);
+
+    pushBack(&vector1, 2);
+    pushBack(&vector1, 4);
+
+    assert(vector1.data[1] == 4);
+    assert(vector1.size == 2);
+}
+
+void popBack(vector *v) {
+    if (v->size == 0) {
+        fprintf(stderr, "Error, vector is empty!");
+        exit(1);
+    }
+
+    v->size--;
+
+    if(v->size < v->capacity / 2) {
+        reserve(v, v->capacity / 2);
+    }
+}
+
+void test_popBack_notEmptyVector() {
+    vector v = createVector(0);
+    pushBack(&v, 10);
+    assert(v.size == 1);
+    popBack(&v);
+    assert(v.size == 0);
+    assert(v.capacity == 1);
+}
+
+

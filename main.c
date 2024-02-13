@@ -2,10 +2,13 @@
 #include <stdint.h>
 #include "libs/data_structures/vector/vector.h"
 
-int main (){
-    vector vector1;
-    
-    reserve(&vector1,12);
+void test() {
+    test_pushBack_emptyVector();
+    test_pushBack_fullVector();
+    test_popBack_notEmptyVector();
+}
 
+int main (){
+    test();
     return 0;
 };
